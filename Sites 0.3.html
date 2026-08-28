@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Religião</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,700;6..96,800;6..96,900&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        /* =====================================
+           PALETA DE CORES DO SITE
+        ===================================== */
+
+        :root {
+            --vermelho-principal: #FF292E;
+            --vermelho-escuro: #B5121B;
+            --vinho: #6E0E14;
+            --vermelho-claro: #FF6B6B;
+
+            --preto: #000000;
+            --creme: #FF6B6B;
+        }
+
+
+        /* =====================================
+           CONFIGURAÇÕES GERAIS
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Montserrat", sans-serif;
+            background-color: var(--creme);
+            color: var(--preto);
+        }
+
+
+        /* =====================================
+           MENU
+        ===================================== */
+
+        .menu {
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 70px;
+
+            background-color: var(--vermelho-principal);
+
+            /* Sem barra preta */
+            border-bottom: none;
+
+            z-index: 1000;
+
+            /* Começa escondido */
+            opacity: 0;
+            transform: translateY(-100%);
+
+            pointer-events: none;
+
+            transition:
+                opacity 0.5s ease,
+                transform 0.5s ease;
+        }
+
+
+        /* Menu visível */
+
+        .menu.aparecer {
+            opacity: 1;
+            transform: translateY(0);
+
+            pointer-events: auto;
+        }
+
+
+        /* Lista horizontal */
+
+        .menu ul {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 55px;
+
+            list-style: none;
+        }
+
+
+        /* Links do menu */
+
+        .menu a {
+            text-decoration: none;
+
+            color: var(--preto);
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+            transition: opacity 0.3s ease;
+        }
+
+
+        .menu a:hover {
+            opacity: 0.5;
+        }
+
+
+        /* =====================================
+           TELA INICIAL
+        ===================================== */
+
+        .inicio {
+            width: 100%;
+            height: 100vh;
+
+            background-color: var(--vermelho-principal);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+        }
+
+
+        .titulo-container {
+            text-align: center;
+
+            transform: translateY(-10px);
+        }
+
+
+        /* Título principal */
+
+        .titulo-container h1 {
+            font-family: "Bodoni Moda", serif;
+
+            font-size: clamp(55px, 8vw, 130px);
+
+            font-weight: 900;
+
+            color: var(--preto);
+
+            line-height: 1;
+
+            letter-spacing: -4px;
+
+            /* Engrossa um pouco a fonte */
+            -webkit-text-stroke: 1px var(--preto);
+        }
+
+
+        /* Subtítulo */
+
+        .subtitulo {
+            margin-top: 18px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 1.2px;
+
+            text-transform: uppercase;
+
+            color: var(--preto);
+        }
+
+
+        /* =====================================
+           INDICAÇÃO PARA ROLAR
+        ===================================== */
+
+        .rolar {
+            position: absolute;
+
+            bottom: 95px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+            color: var(--preto);
+
+            animation: flutuar 2s infinite;
+        }
+
+
+        @keyframes flutuar {
+
+            0%,
+            100% {
+                transform: translate(-50%, 0);
+            }
+
+            50% {
+                transform: translate(-50%, 8px);
+            }
+
+        }
+
+
+        /* =====================================
+           SEÇÕES
+        ===================================== */
+
+        .secao {
+            min-height: 100vh;
+
+            padding: 120px 10%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        /* Títulos das seções */
+
+        .secao h2 {
+            font-family: "Bodoni Moda", serif;
+
+            font-size: clamp(50px, 7vw, 110px);
+
+            font-weight: 900;
+
+            margin-bottom: 30px;
+
+            letter-spacing: -3px;
+        }
+
+
+        /* Textos */
+
+        .secao p {
+            max-width: 700px;
+
+            font-size: 16px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================
+           CORES DAS SEÇÕES
+        ===================================== */
+
+
+        /* HISTÓRIA */
+
+        #historia {
+            background-color: var(--vermelho-principal);
+            color: var(--preto);
+        }
+
+
+        /* CANTOS */
+
+        #cantos {
+            background-color: var(--vermelho-claro);
+            color: var(--preto);
+        }
+
+
+        /* POLÍTICA */
+
+        #politica {
+            background-color: var(--vermelho-escuro);
+            color: var(--creme);
+        }
+
+
+        /* PROJETOS */
+
+        #projetos {
+            background-color: var(--vinho);
+            color: var(--creme);
+        }
+
+
+        /* =====================================
+           RESPONSIVIDADE - CELULAR
+        ===================================== */
+
+        @media (max-width: 600px) {
+
+            /* Título inicial */
+
+            .titulo-container h1 {
+                font-size: 52px;
+                letter-spacing: -2px;
+            }
+
+
+            /* Subtítulo */
+
+            .subtitulo {
+                font-size: 8px;
+                letter-spacing: 0.7px;
+            }
+
+
+            /* Menu */
+
+            .menu {
+                height: 60px;
+            }
+
+
+            .menu ul {
+                gap: 12px;
+
+                padding: 0 10px;
+
+                justify-content: space-around;
+            }
+
+
+            .menu a {
+                font-size: 8px;
+                letter-spacing: 0.3px;
+            }
+
+
+            /* Seções */
+
+            .secao {
+                padding: 100px 8%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         MENU
+    ====================================== -->
+
+    <nav class="menu">
+
+        <ul>
+
+            <li>
+                <a href="#historia">História</a>
+            </li>
+
+            <li>
+                <a href="#cantos">Cantos</a>
+            </li>
+
+            <li>
+                <a href="#politica">Política</a>
+            </li>
+
+            <li>
+                <a href="#projetos">Projetos</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- =====================================
+         TELA INICIAL
+    ====================================== -->
+
+    <section class="inicio">
+
+        <div class="titulo-container">
+
+            <h1>RELIGIÃO</h1>
+
+            <p class="subtitulo">
+                RELIGIÃO AFRICANA NAÇÃO E UMBANDA
+            </p>
+
+        </div>
+
+
+        <div class="rolar">
+            ↓ ROLAR
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         HISTÓRIA
+    ====================================== -->
+
+    <section id="historia" class="secao">
+
+        <h2>História</h2>
+
+        <p>
+            Aqui será colocado o conteúdo relacionado à história.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================
+         CANTOS
+    ====================================== -->
+
+    <section id="cantos" class="secao">
+
+        <h2>Cantos</h2>
+
+        <p>
+            Aqui será colocado o conteúdo relacionado aos cantos.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================
+         POLÍTICA
+    ====================================== -->
+
+    <section id="politica" class="secao">
+
+        <h2>Política</h2>
+
+        <p>
+            Aqui será colocado o conteúdo relacionado à política.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================
+         PROJETOS
+    ====================================== -->
+
+    <section id="projetos" class="secao">
+
+        <h2>Projetos</h2>
+
+        <p>
+            Aqui serão apresentados os projetos.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================
+         JAVASCRIPT - MENU
+    ====================================== -->
+
+    <script>
+
+        const menu = document.querySelector(".menu");
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 150) {
+                menu.classList.add("aparecer");
+            } else {
+                menu.classList.remove("aparecer");
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
